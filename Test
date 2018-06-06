@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int N, sum[20];
+
+void foo(int left, int right = 0, int i = 0)
+{
+	if (left < 0 || right == N)
+		return;
+	sum[i] = right;
+	if (right != 0)
+	{
+		foo(left - right, right, i + 1);
+	}
+	foo(left - 1, right + 1, i);
+	if (left == 0)
+	{
+		for (int j = 0; j <= i; ++j)
+			cout << sum[j] << (j != i ? '+' : '\n');
+	}
+
+}
+int main()
+{
+	cin >> N;
+	foo(N);
+	system("pause");
+	return 0;
+}
